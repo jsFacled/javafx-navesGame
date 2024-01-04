@@ -36,6 +36,7 @@ public class juego extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/javafx/navesgame/juego-view.fxml"));
         //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         inicializarComponentes();
+        gestionEventos();
         pintar();
         stage.setScene(scene);
         stage.setTitle("JavaFx-Game!");
@@ -69,6 +70,16 @@ public class juego extends Application {
         Image buldog = new Image("buldog.png");
         graficos.drawImage(buldog,10,10,43,54);
         System.out.println("URL de la imagen: " + buldog.getUrl());
+    }
+
+
+
+/*
+    ----------- Gestion de eventos ------------------
+ */
+
+    public void gestionEventos(){
+scene.setOnKeyPressed(new Evento());// he creado la clase Evento porque implementa EventHandler, requerida para setOnKeyPressed()
     }
 
 
