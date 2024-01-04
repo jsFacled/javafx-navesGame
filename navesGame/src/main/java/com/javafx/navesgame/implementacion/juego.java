@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class juego extends Application {
@@ -19,6 +20,7 @@ public class juego extends Application {
     Group root;
     Scene scene;
     Canvas lienzo;
+
 
 //------start------------
     /*
@@ -51,7 +53,7 @@ public class juego extends Application {
     public void inicializarComponentes(){
         root = new Group();
         scene = new Scene(root, 700,500);
-        lienzo = new Canvas(200,200);
+        lienzo = new Canvas(700,500);
         root.getChildren().add(lienzo);
         graficos = lienzo.getGraphicsContext2D();//Dentro de graficos ya puedo pintar o dibujar
 
@@ -62,7 +64,11 @@ public class juego extends Application {
  */
 
     public void pintar(){
-        graficos.fillRect(20, 50, 25, 68);//pos x, pos y, ancho, alto
+        //graficos.fillRect(20, 50, 25, 68);//pos x, pos y, ancho, alto
+        //graficos.drawImage(new Image("buldog.png"),0,0);
+        Image buldog = new Image("buldog.png");
+        graficos.drawImage(buldog,10,10,43,54);
+        System.out.println("URL de la imagen: " + buldog.getUrl());
     }
 
 
