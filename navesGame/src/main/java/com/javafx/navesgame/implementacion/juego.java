@@ -1,12 +1,14 @@
 package com.javafx.navesgame.implementacion;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class juego extends Application {
@@ -79,7 +81,16 @@ public class juego extends Application {
  */
 
     public void gestionEventos(){
-scene.setOnKeyPressed(new Evento());// he creado la clase Evento porque implementa EventHandler, requerida para setOnKeyPressed()
+scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    @Override
+    public void handle(KeyEvent keyEvent) {
+        //Capturo el evento de tecla y lo muestro por consola
+        System.out.println("Se presionó la tecla: "+keyEvent.getCode());//llama al enum KeyCode
+
+
+    }
+});// setOnKeyPressed() requiere implementar la interfaz EventHandler
+
     }
 
 
