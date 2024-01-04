@@ -3,7 +3,7 @@ package com.javafx.navesgame;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class JuegoController {
     @FXML
     private Label welcomeText;
 

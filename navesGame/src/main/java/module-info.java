@@ -6,4 +6,6 @@ module com.javafx.navesgame {
 
     opens com.javafx.navesgame to javafx.fxml;
     exports com.javafx.navesgame;
+    exports com.javafx.navesgame.implementacion;
+    opens com.javafx.navesgame.implementacion to javafx.fxml;
 }
