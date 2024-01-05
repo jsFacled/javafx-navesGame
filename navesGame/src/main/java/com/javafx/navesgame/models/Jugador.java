@@ -10,7 +10,7 @@ public class Jugador {
     private int y;
     private int vidas;
     private String nombreImagen;
-    private int velocidad=3;
+    private int velocidad=30;
 
     public Jugador(int x, int y, int vidas, String nombreImagen) {
         this.x = x;
@@ -60,6 +60,7 @@ public class Jugador {
 
         if (Juego.derecha)
             x += velocidad;
+
         if (Juego.izquierda)
             x -= velocidad;
         if (Juego.arriba)

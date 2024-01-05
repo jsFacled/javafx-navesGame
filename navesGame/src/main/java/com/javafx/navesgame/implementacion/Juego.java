@@ -14,9 +14,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class Juego extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 
 //----variables globales ---------
-
     private GraphicsContext graficos;
     private Group root;
     private Scene scene;
@@ -26,11 +29,8 @@ public class Juego extends Application {
     public static boolean arriba;
     public static boolean abajo;
     public static boolean izquierda;
-    public static boolean derecha;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static boolean derecha;
 
 
 //------start------------
@@ -106,10 +106,8 @@ public class Juego extends Application {
  */
 
     public void pintar(){
-
-
         Image background1 = new Image("edificioChimenea.png");
-      //  graficos.drawImage(background1,0,0,700,500);
+      graficos.drawImage(background1,0,0,700,500);
       jugador.pintar(graficos);
 
 
