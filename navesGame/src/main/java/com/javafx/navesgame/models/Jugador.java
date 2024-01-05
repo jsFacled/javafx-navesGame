@@ -10,7 +10,7 @@ public class Jugador {
     private int y;
     private int vidas;
     private String nombreImagen;
-    private int velocidad=10;
+    private int velocidad=15;
 
     public Jugador(int x, int y, int vidas, String nombreImagen) {
         this.x = x;
@@ -53,16 +53,20 @@ public class Jugador {
 
     //defino método pintar para cada jugador
     public void pintar(GraphicsContext graficos) {
-        graficos.drawImage(new Image(nombreImagen), x, y, 43, 64);
+
+        graficos.drawImage(Juego.imagenes.get(nombreImagen), x, y, 43, 64);
     }
 
     public void mover() {
-
-        if (Juego.derecha)
+        if (Juego.derecha) {
             x += velocidad;
+        }
+        if (x>700) x=-35; //si pasa la pantalla vuelve al inicio un poquitito antes
 
-        if (Juego.izquierda)
+        if (Juego.izquierda) {
             x -= velocidad;
+        }
+
         if (Juego.arriba)
             y -= velocidad;
         if (Juego.abajo)

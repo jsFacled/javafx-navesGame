@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 public class Juego extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -29,8 +31,11 @@ public class Juego extends Application {
     public static boolean arriba;
     public static boolean abajo;
     public static boolean izquierda;
-
     public static boolean derecha;
+
+    public static HashMap<String, Image> imagenes;
+
+
 
 
 //------start------------
@@ -90,15 +95,22 @@ public class Juego extends Application {
  */
 
     public void inicializarComponentes(){
-        jugador = new Jugador(20,40,3,"buldog.png");
+        imagenes = new HashMap<String, Image>();
+        cargarImagenes();
+        jugador = new Jugador(20,40,3,"buldog");
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);
         root.getChildren().add(lienzo);
         graficos = lienzo.getGraphicsContext2D();//Dentro de graficos ya puedo pintar o dibujar
-
-
     }
+
+/*
+    ----------- Cargar imagenes al hasMap ------------------
+ */
+ public void cargarImagenes() {
+     imagenes.put("buldog", new Image("buldog.png"));
+ }
 
 /*
     ----------- Pintar ------------------
