@@ -13,10 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class juego extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+public class Juego extends Application {
 
 //----variables globales ---------
 
@@ -26,6 +23,14 @@ public class juego extends Application {
     private Canvas lienzo;
     private int x=0;
     private Jugador jugador;
+    public static boolean arriba;
+    public static boolean abajo;
+    public static boolean izquierda;
+    public static boolean derecha;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 
 //------start------------
@@ -75,9 +80,10 @@ public class juego extends Application {
 
     /*
     ----------- Actualizar Estado ------------------
- */
+    ** Se ejecutará 60fps
+    */
     public void actualizarEstado(){
-
+        jugador.mover();
     }
 
 
@@ -117,6 +123,10 @@ public class juego extends Application {
  */
 
     public void gestionEventos() {
+
+        /*
+            ---Capturo la tecla presionada
+        */
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent evento) {
@@ -126,21 +136,54 @@ public class juego extends Application {
            //Tomo decisiones a partir del evento capturado
                 switch (evento.getCode().toString()){
                     case "RIGHT":
-                        x +=10;
-                        System.out.println(x);
+                       derecha = true;
                         break;
                     case "LEFT":
+                        izquierda = true;
                         break;
 
                     case "UP":
+                        arriba = true;
                         break;
 
                     case "DOWN":
+                        abajo = true;
                         break;
 
                 }
             }
         });// setOnKeyPressed() requiere implementar la interfaz EventHandler
+
+        /*
+            ---Capturo la tecla al soltarse
+        */
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent evento) {
+                //Capturo el evento de tecla y lo muestro por consola
+                System.out.println("Se presionó la tecla: " + evento.getCode());//llama al enum KeyCode
+
+                //Tomo decisiones a partir del evento capturado
+                switch (evento.getCode().toString()){
+                    case "RIGHT":
+                        derecha = false;
+                        break;
+                    case "LEFT":
+                        izquierda = false;
+                        break;
+
+                    case "UP":
+                        arriba = false;
+                        break;
+
+                    case "DOWN":
+                        abajo = false;
+                        break;
+
+                }
+            }
+        });// setOnKeyPressed() requiere implementar la interfaz EventHandler
+
 
     }
 

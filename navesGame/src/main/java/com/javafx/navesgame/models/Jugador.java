@@ -1,13 +1,16 @@
 package com.javafx.navesgame.models;
 
+import com.javafx.navesgame.implementacion.Juego;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Jugador {
+
     private int x;
     private int y;
     private int vidas;
     private String nombreImagen;
+    private int velocidad=3;
 
     public Jugador(int x, int y, int vidas, String nombreImagen) {
         this.x = x;
@@ -49,7 +52,20 @@ public class Jugador {
     }
 
     //defino método pintar para cada jugador
-    public void pintar(GraphicsContext graficos){
-        graficos.drawImage(new Image(nombreImagen),x,y,43,64);
+    public void pintar(GraphicsContext graficos) {
+        graficos.drawImage(new Image(nombreImagen), x, y, 43, 64);
+    }
+
+    public void mover() {
+
+        if (Juego.derecha)
+            x += velocidad;
+        if (Juego.izquierda)
+            x -= velocidad;
+        if (Juego.arriba)
+            y -= velocidad;
+        if (Juego.abajo)
+            y += velocidad;
+
     }
 }
