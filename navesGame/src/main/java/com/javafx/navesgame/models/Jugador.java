@@ -10,7 +10,7 @@ public class Jugador {
     private int y;
     private int vidas;
     private String nombreImagen;
-    private int velocidad=30;
+    private int velocidad=10;
 
     public Jugador(int x, int y, int vidas, String nombreImagen) {
         this.x = x;

@@ -70,20 +70,18 @@ public class Juego extends Application {
 
                 actualizarEstado();
                 pintar();
-
             }
         };
-
         animationTimer.start();//Comienza el ciclo de juego
-
     }
+
 
     /*
     ----------- Actualizar Estado ------------------
     ** Se ejecutará 60fps
     */
     public void actualizarEstado(){
-        jugador.mover();
+               jugador.mover();
     }
 
 
@@ -99,6 +97,7 @@ public class Juego extends Application {
         root.getChildren().add(lienzo);
         graficos = lienzo.getGraphicsContext2D();//Dentro de graficos ya puedo pintar o dibujar
 
+
     }
 
 /*
@@ -106,12 +105,9 @@ public class Juego extends Application {
  */
 
     public void pintar(){
-        Image background1 = new Image("edificioChimenea.png");
-      graficos.drawImage(background1,0,0,700,500);
-      jugador.pintar(graficos);
-
-
-
+      //  graficos.drawImage(new Image("edificioChimenea.png"),0,0,700,500);
+       graficos.drawImage(new Image("plano1.png"),0,0,700,500);
+        jugador.pintar(graficos);
     }
 
 
