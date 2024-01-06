@@ -1,5 +1,6 @@
 package com.javafx.navesgame.implementacion;
 
+import com.javafx.navesgame.models.Fondo;
 import com.javafx.navesgame.models.Jugador;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -27,6 +28,7 @@ public class Juego extends Application {
     private Scene scene;
     private Canvas lienzo;
     private int x=0;
+    private Fondo fondo;
     private Jugador jugador;
     public static boolean arriba;
     public static boolean abajo;
@@ -97,7 +99,8 @@ public class Juego extends Application {
     public void inicializarComponentes(){
         imagenes = new HashMap<String, Image>();
         cargarImagenes();
-        jugador = new Jugador(20,40,3,"buldog");
+        jugador = new Jugador(20,40,"buldog", 10, 3);
+        fondo = new Fondo(0,0,"plano1",-3);
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);
@@ -110,6 +113,8 @@ public class Juego extends Application {
  */
  public void cargarImagenes() {
      imagenes.put("buldog", new Image("buldog.png"));
+     imagenes.put("plano1", new Image("plano1.png"));
+
  }
 
 /*
@@ -118,7 +123,7 @@ public class Juego extends Application {
 
     public void pintar(){
       //  graficos.drawImage(new Image("edificioChimenea.png"),0,0,700,500);
-       graficos.drawImage(new Image("plano1.png"),0,0,700,500);
+      fondo.pintar(graficos);
         jugador.pintar(graficos);
     }
 

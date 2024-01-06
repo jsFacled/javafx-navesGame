@@ -4,36 +4,16 @@ import com.javafx.navesgame.implementacion.Juego;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Jugador {
+public class Jugador extends ObjetoJuego {
 
-    private int x;
-    private int y;
+
     private int vidas;
-    private String nombreImagen;
-    private int velocidad=15;
 
-    public Jugador(int x, int y, int vidas, String nombreImagen) {
-        this.x = x;
-        this.y = y;
+    public Jugador(int x, int y, String nombreImagen, int velocidad, int vidas) {
+        super(x, y, nombreImagen, velocidad);
         this.vidas = vidas;
-        this.nombreImagen = nombreImagen;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public int getVidas() {
         return vidas;
@@ -43,25 +23,18 @@ public class Jugador {
         this.vidas = vidas;
     }
 
-    public String getNombreImagen() {
-        return nombreImagen;
-    }
 
-    public void setNombreImagen(String nombreImagen) {
-        this.nombreImagen = nombreImagen;
-    }
-
-    //defino método pintar para cada jugador
+    @Override
     public void pintar(GraphicsContext graficos) {
-
         graficos.drawImage(Juego.imagenes.get(nombreImagen), x, y, 43, 64);
     }
 
+    @Override
     public void mover() {
         if (Juego.derecha) {
             x += velocidad;
         }
-        if (x>700) x=-35; //si pasa la pantalla vuelve al inicio un poquitito antes
+        if (x > 700) x = -35; //si pasa la pantalla vuelve al inicio un poquitito antes
 
         if (Juego.izquierda) {
             x -= velocidad;
