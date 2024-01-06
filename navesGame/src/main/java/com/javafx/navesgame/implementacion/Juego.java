@@ -89,6 +89,7 @@ public class Juego extends Application {
     */
     public void actualizarEstado(){
                jugador.mover();
+               fondo.mover();
     }
 
 
@@ -100,7 +101,7 @@ public class Juego extends Application {
         imagenes = new HashMap<String, Image>();
         cargarImagenes();
         jugador = new Jugador(20,40,"buldog", 10, 3);
-        fondo = new Fondo(0,0,"plano1",-3);
+        fondo = new Fondo(0,0,"plano1",50);
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);

@@ -16,6 +16,18 @@ graficos.drawImage(Juego.imagenes.get(nombreImagen),x,y);
 
     @Override
     public void mover() {
+        if (Juego.derecha) {
+            x -= velocidad;
+        }
+
+        if (Juego.izquierda) {
+            x += velocidad;
+        }
+
+        if (Juego.arriba)
+            y += velocidad;
+        if (Juego.abajo)
+            y -= velocidad;
 
     }
 }
