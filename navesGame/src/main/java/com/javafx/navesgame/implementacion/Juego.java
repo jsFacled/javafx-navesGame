@@ -100,8 +100,8 @@ public class Juego extends Application {
     public void inicializarComponentes(){
         imagenes = new HashMap<String, Image>();
         cargarImagenes();
-        jugador = new Jugador(20,40,"buldog", 10, 3);
-        fondo = new Fondo(0,0,"plano1","plano1_2",10);
+        jugador = new Jugador(20,40,"buldog", 3, 3);
+        fondo = new Fondo(0,0,"plano1","plano1_2",7);
 
         root = new Group();
         scene = new Scene(root, 700,500);
@@ -117,6 +117,8 @@ public class Juego extends Application {
      imagenes.put("buldog", new Image("buldog.png"));
      imagenes.put("plano1", new Image("plano1.png"));
      imagenes.put("plano1_2", new Image("plano1_2.png"));
+     imagenes.put("tileset2", new Image("tileset2.jpg"));
+
 
  }
 
@@ -127,6 +129,8 @@ public class Juego extends Application {
     public void pintar(){
       //  graficos.drawImage(new Image("edificioChimenea.png"),0,0,700,500);
       fondo.pintar(graficos);
+
+      graficos.drawImage(imagenes.get("tileset2"), 0,0);
         jugador.pintar(graficos);
     }
 
