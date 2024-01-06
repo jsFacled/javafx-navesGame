@@ -7,6 +7,8 @@ public abstract class ObjetoJuego {
     protected int y;
     protected String nombreImagen;
     protected int velocidad;
+    protected int ancho;
+    protected int alto;
 
     public ObjetoJuego(int x, int y, String nombreImagen, int velocidad) {
         this.x = x;

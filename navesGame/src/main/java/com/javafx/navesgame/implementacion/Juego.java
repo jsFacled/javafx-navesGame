@@ -101,7 +101,8 @@ public class Juego extends Application {
         imagenes = new HashMap<String, Image>();
         cargarImagenes();
         jugador = new Jugador(20,40,"buldog", 10, 3);
-        fondo = new Fondo(0,0,"plano1",50);
+        fondo = new Fondo(0,0,"plano1","plano1_2",10);
+
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);
@@ -115,6 +116,7 @@ public class Juego extends Application {
  public void cargarImagenes() {
      imagenes.put("buldog", new Image("buldog.png"));
      imagenes.put("plano1", new Image("plano1.png"));
+     imagenes.put("plano1_2", new Image("plano1_2.png"));
 
  }
 
