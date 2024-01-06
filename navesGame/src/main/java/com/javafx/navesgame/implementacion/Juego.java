@@ -112,26 +112,44 @@ public class Juego extends Application {
 
 /*
     ----------- Cargar imagenes al hasMap ------------------
+    ** Ingresamos en el hasMap las imagenes
  */
  public void cargarImagenes() {
      imagenes.put("buldog", new Image("buldog.png"));
      imagenes.put("plano1", new Image("plano1.png"));
      imagenes.put("plano1_2", new Image("plano1_2.png"));
      imagenes.put("tileset2", new Image("tileset2.jpg"));
-
+     imagenes.put("tileset1", new Image("tileset1.png"));
 
  }
 
 /*
     ----------- Pintar ------------------
+    **
  */
 
     public void pintar(){
       //  graficos.drawImage(new Image("edificioChimenea.png"),0,0,700,500);
       fondo.pintar(graficos);
 
-      graficos.drawImage(imagenes.get("tileset2"), 0,0);
+        // ** Dibujo un cuadrado solamente, identifico coordenadas dentro de la imagen tileset1
+     /* graficos.drawImage(imagenes.get("tileset1"),
+              coordenadaImagenX,    // Desde acá ...
+              coordenadaImagenY,    //...
+              ancho,                //...
+              alto,                 //..Hasta acá extraigo el fragmento de la imagen
+              coordenadaPintarX,
+              coordenadaPintarY,
+              anchoPintar,
+              altoPintar
+              );
+              */
+
+        //pinto el cielo
+        graficos.drawImage(imagenes.get("tileset1"),147,10, 30,30,0,0,100,50);
+
         jugador.pintar(graficos);
+
     }
 
 
