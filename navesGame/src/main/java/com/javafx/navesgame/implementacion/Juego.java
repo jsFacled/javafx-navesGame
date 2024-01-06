@@ -2,6 +2,7 @@ package com.javafx.navesgame.implementacion;
 
 import com.javafx.navesgame.models.Fondo;
 import com.javafx.navesgame.models.Jugador;
+import com.javafx.navesgame.models.Tile;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ public class Juego extends Application {
     private int x=0;
     private Fondo fondo;
     private Jugador jugador;
+    private Tile tile;
     public static boolean arriba;
     public static boolean abajo;
     public static boolean izquierda;
@@ -102,7 +104,7 @@ public class Juego extends Application {
         cargarImagenes();
         jugador = new Jugador(20,40,"buldog", 3, 3);
         fondo = new Fondo(0,0,"plano1","plano1_2",7);
-
+ tile=new Tile(0,0,"tileset1",0,147,10,150,10);
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);
@@ -146,8 +148,7 @@ public class Juego extends Application {
               */
 
         //pinto el cielo
-        graficos.drawImage(imagenes.get("tileset1"),147,10, 30,30,0,0,100,50);
-
+        tile.pintar(graficos);
         jugador.pintar(graficos);
 
     }
