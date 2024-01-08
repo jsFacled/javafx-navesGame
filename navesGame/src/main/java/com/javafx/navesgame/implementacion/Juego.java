@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Juego extends Application {
@@ -36,8 +37,24 @@ public class Juego extends Application {
     public static boolean abajo;
     public static boolean izquierda;
     public static boolean derecha;
-
     public static HashMap<String, Image> imagenes;
+    //private int tilemap [] [];
+    private ArrayList<Tile> tiles;
+
+    //inicializamos tilemap
+    private int tilemap [][]= {
+            { 5,0,5,0,0,0,0,1,0,1 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,6,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 },
+            { 0,0,0,0,0,0,0,0,0,0 }
+
+    };
 
 
 
@@ -100,11 +117,11 @@ public class Juego extends Application {
  */
 
     public void inicializarComponentes(){
-        imagenes = new HashMap<String, Image>();
         cargarImagenes();
-        jugador = new Jugador(20,40,"buldog", 3, 3);
-        fondo = new Fondo(0,0,"plano1","plano1_2",7);
- tile=new Tile(0,0,"tileset1",0,147,10,150,10);
+        jugador = new Jugador(0,0,"buldog", 1, 3);
+        fondo = new Fondo(0,0,"plano1","plano1_2",4);
+        inicializarTiles();
+        //tile=new Tile(0,0,"tileset1-700500",0,310,140,50,50);//El ancho y alto es lo que recorta de la imagen origen y lo muestra con esas medidas.
         root = new Group();
         scene = new Scene(root, 700,500);
         lienzo = new Canvas(700,500);
@@ -112,16 +129,33 @@ public class Juego extends Application {
         graficos = lienzo.getGraphicsContext2D();//Dentro de graficos ya puedo pintar o dibujar
     }
 
+    public void inicializarTiles(){
+        tiles = new ArrayList<Tile>();
+        for (int i=0;i<tilemap.length;i++){
+            for (int j = 0; j <tilemap[i].length ; j++) {
+                if (tilemap[i][j] !=0) {
+                    //this.tiles.add(new Tile(tilemap[i][j],j*70, i*70,"tilemap",0,70,70));
+                    this.tiles.add(new Tile(tilemap[i][j],j*50, i*50,"tileset1-700500",0,50,50));
+
+                }
+
+            }
+        }
+    }
 /*
     ----------- Cargar imagenes al hasMap ------------------
     ** Ingresamos en el hasMap las imagenes
  */
  public void cargarImagenes() {
+     imagenes = new HashMap<String, Image>();
+
      imagenes.put("buldog", new Image("buldog.png"));
      imagenes.put("plano1", new Image("plano1.png"));
      imagenes.put("plano1_2", new Image("plano1_2.png"));
      imagenes.put("tileset2", new Image("tileset2.jpg"));
      imagenes.put("tileset1", new Image("tileset1.png"));
+     imagenes.put("tileset1-700500", new Image("tileset1-700500.png"));
+
 
  }
 
@@ -148,7 +182,12 @@ public class Juego extends Application {
               */
 
         //pinto el cielo
-        tile.pintar(graficos);
+        //tile.pintar(graficos);
+
+        // ** Pintamos usanda ArrayList y tiles
+        for (int i = 0; i < tiles.size(); i++) {
+            tiles.get(i).pintar(graficos);
+        }
         jugador.pintar(graficos);
 
     }
