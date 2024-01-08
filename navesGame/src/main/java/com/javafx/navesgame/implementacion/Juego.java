@@ -155,6 +155,7 @@ public class Juego extends Application {
      imagenes.put("tileset2", new Image("tileset2.jpg"));
      imagenes.put("tileset1", new Image("tileset1.png"));
      imagenes.put("tileset1-700500", new Image("tileset1-700500.png"));
+     imagenes.put("perroCaminandoYCorriendo", new Image("perroCaminandoYCorriendo.png"));
 
 
  }
