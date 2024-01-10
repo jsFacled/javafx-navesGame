@@ -201,6 +201,7 @@ public class Juego extends Application {
 
         jugadorAnimado.pintar(graficos);
         item.pintar(graficos);
+        graficos.fillText("Vidas: "+jugadorAnimado.getVidas(),5,20);
 
 
     }

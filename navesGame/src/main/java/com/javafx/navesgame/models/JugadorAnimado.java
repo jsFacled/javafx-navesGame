@@ -73,8 +73,9 @@ return new Rectangle(x, y, 64, 40);
 
     public void verificarColisionesItem(Item item){
         //intersects devuelve true si están colisionando
-       if( this.obtenerRectangulo().getBoundsInLocal().intersects(item.obtenerRectangulo().getBoundsInLocal())){
-           System.out.println(" * * Estan colisionando * * ");
+       if( !item.isCapturado() && this.obtenerRectangulo().getBoundsInLocal().intersects(item.obtenerRectangulo().getBoundsInLocal())){
+          this.vidas += item.getCantidadVidas();
+          item.setCapturado(true);
        }
     }
 
