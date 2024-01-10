@@ -2,6 +2,7 @@ package com.javafx.navesgame.implementacion;
 
 import com.javafx.navesgame.models.Fondo;
 import com.javafx.navesgame.models.Jugador;
+import com.javafx.navesgame.models.JugadorAnimado;
 import com.javafx.navesgame.models.Tile;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -31,7 +32,8 @@ public class Juego extends Application {
     private Canvas lienzo;
     private int x=0;
     private Fondo fondo;
-    private Jugador jugador;
+    //private Jugador jugador;//Lo reemplazamos por JugadorAnimado
+    private JugadorAnimado jugadorAnimado;
     private Tile tile;
     public static boolean arriba;
     public static boolean abajo;
@@ -94,7 +96,7 @@ public class Juego extends Application {
                 double t = (tiempoActual - tiempoInicial)/1000000000.0; //lo paso a segundos
                 System.out.println("Time: "+t);
 
-                actualizarEstado();
+                actualizarEstado(t);
                 pintar();
             }
         };
@@ -104,11 +106,13 @@ public class Juego extends Application {
 
     /*
     ----------- Actualizar Estado ------------------
-    ** Se ejecutará 60fps
+    ** Se ejecutará 60fps dentro de cicloJuego
     */
-    public void actualizarEstado(){
-               jugador.mover();
-               fondo.mover();
+    public void actualizarEstado(double t){
+               //jugador.mover();
+        jugadorAnimado.calcularFrame(t);
+        jugadorAnimado.mover();
+        fondo.mover();
     }
 
 
@@ -118,7 +122,10 @@ public class Juego extends Application {
 
     public void inicializarComponentes(){
         cargarImagenes();
-        jugador = new Jugador(0,0,"buldog", 1, 3);
+        //jugador = new Jugador(0,0,"buldog", 1, 3);
+        jugadorAnimado = new JugadorAnimado(0,0,"perroCaminandoYCorriendo",5,3,"descanso");
+
+
         fondo = new Fondo(0,0,"plano1","plano1_2",4);
         inicializarTiles();
         //tile=new Tile(0,0,"tileset1-700500",0,310,140,50,50);//El ancho y alto es lo que recorta de la imagen origen y lo muestra con esas medidas.
@@ -189,7 +196,8 @@ public class Juego extends Application {
         for (int i = 0; i < tiles.size(); i++) {
             tiles.get(i).pintar(graficos);
         }
-        jugador.pintar(graficos);
+        //jugador.pintar(graficos);
+        jugadorAnimado.pintar(graficos);
 
     }
 
@@ -214,9 +222,13 @@ public class Juego extends Application {
                 switch (evento.getCode().toString()){
                     case "RIGHT":
                        derecha = true;
+                        jugadorAnimado.setDireccion(1);
+                       jugadorAnimado.setAnimacionActual("correr");
                         break;
                     case "LEFT":
                         izquierda = true;
+                        jugadorAnimado.setDireccion(-1);
+                        jugadorAnimado.setAnimacionActual("correr");
                         break;
 
                     case "UP":
@@ -225,6 +237,12 @@ public class Juego extends Application {
 
                     case "DOWN":
                         abajo = true;
+                        break;
+                    case "SPACE":
+                        //jugador.setVelocidad(15);
+                        //jugador.setNombreImagen("buldogCorriendo")
+                        jugadorAnimado.setVelocidad(15);
+
                         break;
 
                 }
@@ -244,9 +262,12 @@ public class Juego extends Application {
                 switch (evento.getCode().toString()){
                     case "RIGHT":
                         derecha = false;
+
+                        jugadorAnimado.setAnimacionActual("descanso");
                         break;
                     case "LEFT":
                         izquierda = false;
+                        jugadorAnimado.setAnimacionActual("descanso");
                         break;
 
                     case "UP":
@@ -255,6 +276,10 @@ public class Juego extends Application {
 
                     case "DOWN":
                         abajo = false;
+                        break;
+                    case "SPACE":
+                        jugadorAnimado.setVelocidad(15);
+
                         break;
 
                 }
