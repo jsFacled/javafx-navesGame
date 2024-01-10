@@ -3,6 +3,7 @@ package com.javafx.navesgame.models;
 import com.javafx.navesgame.implementacion.Juego;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Item extends ObjetoJuego {
     private int cantidadPuntos;
@@ -16,6 +17,11 @@ public class Item extends ObjetoJuego {
         //this.alto=(int)Juego.imagenes.get("itemEsfera").getHeight();
     }
 
+
+    public Rectangle obtenerRectangulo(){
+        return new Rectangle(x, y, ancho, alto);
+    }
+
     @Override
     public void pintar(GraphicsContext graficos) {
         graficos.drawImage(Juego.imagenes.get("itemEsfera"), x, y, 50, 50);
@@ -23,6 +29,8 @@ public class Item extends ObjetoJuego {
         graficos.strokeRect(x, y, ancho, alto);
 
     }
+
+
 
     @Override
     public void mover() {

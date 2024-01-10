@@ -108,6 +108,7 @@ public class Juego extends Application {
     */
     public void actualizarEstado(double t){
                //jugador.mover();
+        jugadorAnimado.verificarColisionesItem(item);
         jugadorAnimado.calcularFrame(t);
         jugadorAnimado.mover();
         fondo.mover();
@@ -126,7 +127,7 @@ public class Juego extends Application {
 
         fondo = new Fondo(0,0,"plano1","plano1_2",4);
         inicializarTiles();
-        item=new Item(100,100,"itemEsfera",0,1);
+        item=new Item(300,150,"itemEsfera",0,1);
         //tile=new Tile(0,0,"tileset1-700500",0,310,140,50,50);//El ancho y alto es lo que recorta de la imagen origen y lo muestra con esas medidas.
         root = new Group();
         scene = new Scene(root, 700,500);

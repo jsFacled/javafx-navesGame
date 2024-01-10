@@ -65,6 +65,19 @@ public class JugadorAnimado extends ObjetoJuego {
         this.altoImagen =(int) coordenadas.getHeight();
     }
 
+
+    public Rectangle obtenerRectangulo(){
+return new Rectangle(x, y, 64, 40);
+    }
+
+
+    public void verificarColisionesItem(Item item){
+        //intersects devuelve true si están colisionando
+       if( this.obtenerRectangulo().getBoundsInLocal().intersects(item.obtenerRectangulo().getBoundsInLocal())){
+           System.out.println(" * * Estan colisionando * * ");
+       }
+    }
+
     public int getVidas() {
         return vidas;
     }
