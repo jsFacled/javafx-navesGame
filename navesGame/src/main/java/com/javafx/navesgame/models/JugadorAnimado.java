@@ -3,6 +3,7 @@ package com.javafx.navesgame.models;
 import com.javafx.navesgame.implementacion.Juego;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +102,12 @@ public class JugadorAnimado extends ObjetoJuego {
          *
           */
         graficos.drawImage(Juego.imagenes.get(nombreImagen),xImagen,yImagen,anchoImagen*direccion,altoImagen, x, y, 64, 40);
+
+        //Pintamos un rectangulo temporal para Colisiones con strokeRect(x,y,ancho,alto)
+        graficos.setFill(Color.RED);
+
+        //graficos.strokeRect(xImagen,yImagen,anchoImagen*direccion,altoImagen);
+        graficos.strokeRect(x, y, 64, 40);
     }
 
     @Override

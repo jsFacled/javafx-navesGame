@@ -1,9 +1,6 @@
 package com.javafx.navesgame.implementacion;
 
-import com.javafx.navesgame.models.Fondo;
-import com.javafx.navesgame.models.Jugador;
-import com.javafx.navesgame.models.JugadorAnimado;
-import com.javafx.navesgame.models.Tile;
+import com.javafx.navesgame.models.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -42,6 +39,7 @@ public class Juego extends Application {
     public static HashMap<String, Image> imagenes;
     //private int tilemap [] [];
     private ArrayList<Tile> tiles;
+    private Item item;
 
     //inicializamos tilemap
     private int tilemap [][]= {
@@ -123,11 +121,12 @@ public class Juego extends Application {
     public void inicializarComponentes(){
         cargarImagenes();
         //jugador = new Jugador(0,0,"buldog", 1, 3);
-        jugadorAnimado = new JugadorAnimado(0,0,"perroCaminandoYCorriendo",5,3,"descanso");
+        jugadorAnimado = new JugadorAnimado(0,0,"perroCaminandoYCorriendo",2,3,"descanso");
 
 
         fondo = new Fondo(0,0,"plano1","plano1_2",4);
         inicializarTiles();
+        item=new Item(100,100,"itemEsfera",0,1);
         //tile=new Tile(0,0,"tileset1-700500",0,310,140,50,50);//El ancho y alto es lo que recorta de la imagen origen y lo muestra con esas medidas.
         root = new Group();
         scene = new Scene(root, 700,500);
@@ -153,7 +152,7 @@ public class Juego extends Application {
     ----------- Cargar imagenes al hasMap ------------------
     ** Ingresamos en el hasMap las imagenes
  */
- public void cargarImagenes() {
+    public void cargarImagenes() {
      imagenes = new HashMap<String, Image>();
 
      imagenes.put("buldog", new Image("buldog.png"));
@@ -163,6 +162,7 @@ public class Juego extends Application {
      imagenes.put("tileset1", new Image("tileset1.png"));
      imagenes.put("tileset1-700500", new Image("tileset1-700500.png"));
      imagenes.put("perroCaminandoYCorriendo", new Image("perroCaminandoYCorriendo.png"));
+     imagenes.put("itemEsfera", new Image("itemEsfera.png"));
 
 
  }
@@ -196,8 +196,11 @@ public class Juego extends Application {
         for (int i = 0; i < tiles.size(); i++) {
             tiles.get(i).pintar(graficos);
         }
-        //jugador.pintar(graficos);
+
+
         jugadorAnimado.pintar(graficos);
+        item.pintar(graficos);
+
 
     }
 
